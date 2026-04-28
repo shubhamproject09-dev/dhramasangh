@@ -1,6 +1,8 @@
 import { Box, Typography, Button, Container } from "@mui/material";
 import { motion } from "framer-motion";
 import templeImg from "../assets/heroImg.JPG";
+import gangaImg from "../assets/puja.jpg";
+import sadhuImg from "../assets/sadhu.jpg";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import TempleHinduIcon from "@mui/icons-material/TempleHindu";
 import SchoolIcon from "@mui/icons-material/School";
@@ -28,12 +30,38 @@ const Home = () => {
                     justifyContent: "center",
                     color: "#fff",
                     textAlign: "center",
-                    backgroundImage: `url(${templeImg})`, // ✅ local image
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
                 }}
             >
-                {/* 🌑 Overlay */}
+
+                {/* 🔥 BACKGROUND SLIDER */}
+                <Swiper
+                    modules={[Autoplay]}
+                    autoplay={{ delay: 3000 }}
+                    loop
+                    style={{
+                        position: "absolute",
+                        width: "100%",
+                        height: "100%",
+                        top: 0,
+                        left: 0,
+                        zIndex: 0,
+                    }}
+                >
+                    {[gangaImg, templeImg, sadhuImg].map((img, i) => (
+                        <SwiperSlide key={i}>
+                            <Box
+                                sx={{
+                                    height: "90vh",
+                                    backgroundImage: `url(${img})`,
+                                    backgroundSize: "cover",
+                                    backgroundPosition: "center",
+                                }}
+                            />
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
+
+                {/* 🌑 OVERLAY */}
                 <Box
                     sx={{
                         position: "absolute",
@@ -42,16 +70,18 @@ const Home = () => {
                         width: "100%",
                         height: "100%",
                         backgroundColor: "rgba(0,0,0,0.7)",
+                        zIndex: 1,
                     }}
                 />
-                {/* ✨ Content */}
+
+                {/* ✨ CONTENT */}
                 <Container sx={{ position: "relative", zIndex: 2 }}>
                     <motion.div
                         initial={{ opacity: 0, y: 60 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1 }}
                     >
-                        {/* Main Quote */}
+                        {/* 🪷 Heading */}
                         <Typography
                             sx={{
                                 fontSize: { xs: "22px", md: "42px" },
@@ -64,7 +94,7 @@ const Home = () => {
                             <br /> anything is possible...
                         </Typography>
 
-                        {/* Sub Text */}
+                        {/* ✨ Sub text */}
                         <Typography
                             sx={{
                                 fontSize: { xs: "14px", md: "20px" },
@@ -79,8 +109,15 @@ const Home = () => {
                             the serenity of Dharmasangh.
                         </Typography>
 
-                        {/* Buttons */}
-                        <Box sx={{ display: "flex", gap: 2, justifyContent: "center", flexWrap: "wrap" }}>
+                        {/* 🔘 Buttons */}
+                        <Box
+                            sx={{
+                                display: "flex",
+                                gap: 2,
+                                justifyContent: "center",
+                                flexWrap: "wrap",
+                            }}
+                        >
                             <motion.div whileHover={{ scale: 1.1 }}>
                                 <Button
                                     variant="contained"
@@ -121,6 +158,48 @@ const Home = () => {
                     </motion.div>
                 </Container>
             </Box>
+
+            <Container sx={{ mt: 6 }}>
+                <Box
+                    sx={{
+                        display: "grid",
+                        gridTemplateColumns: {
+                            xs: "1fr 1fr",
+                            md: "repeat(5, 1fr)",
+                        },
+                        gap: 2,
+                    }}
+                >
+                    {[
+                        { title: "Teachings", path: "/teachings" },
+                        { title: "Temple", path: "/temple" },
+                        { title: "Gaushala", path: "/gaushala" },
+                        { title: "Donate", path: "/donate" },
+                        { title: "Events", path: "/events" },
+                    ].map((item, index) => (
+                        <motion.div key={index} whileHover={{ scale: 1.08 }}>
+                            <Box
+                                onClick={() => navigate(item.path)}
+                                sx={{
+                                    background: "linear-gradient(135deg, #FF9800, #F57C00)",
+                                    color: "#fff",
+                                    p: 3,
+                                    borderRadius: "16px",
+                                    textAlign: "center",
+                                    cursor: "pointer",
+                                    fontWeight: "bold",
+                                    boxShadow: "0 8px 20px rgba(0,0,0,0.2)",
+                                    "&:hover": {
+                                        boxShadow: "0 15px 30px rgba(0,0,0,0.3)",
+                                    },
+                                }}
+                            >
+                                {item.title}
+                            </Box>
+                        </motion.div>
+                    ))}
+                </Box>
+            </Container>
 
             <Container sx={{ py: { xs: 6, md: 10 } }}>
                 <motion.div

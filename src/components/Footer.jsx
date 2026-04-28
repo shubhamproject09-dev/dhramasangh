@@ -3,7 +3,7 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import { Link } from "react-router-dom";
-import logo from "../assets/logo.webp";
+import logo from "../assets/dharamlogo.png";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 
 const Footer = () => {
@@ -38,9 +38,9 @@ const Footer = () => {
                             src={logo}
                             alt="logo"
                             sx={{
-                                height: 80,
-                                width: 200,
-                                mb: 2
+                                height: 130,
+                                width: 120,
+                                mb: 1
                             }}
                         />
 
